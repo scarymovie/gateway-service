@@ -7,10 +7,5 @@ services:
       dockerfile: ../docker/Dockerfile
     container_name: gateway_service
     restart: unless-stopped
-    depends_on:
-      - postgres
-      - migrations
-    env_file:
-      - .env
     ports:
-      - "50051:50051"
+      - "8080:8080"

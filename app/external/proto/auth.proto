@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package auth;
-option go_package = "example.com/myproject/gateway-service/external/authpb";
+option go_package = "example.com/myproject/app/external/authpb";
 
 service AuthService {
   rpc GetUserByID(GetUserRequest) returns (GetUserResponse);
