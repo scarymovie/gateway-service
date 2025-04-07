@@ -27,7 +27,6 @@ func (h *Handler) CreateUser(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, "CreateUser failed: "+err.Error())
 	}
 
-	// Формируем ответ, используя тип User из openapi.gen.go
 	user := external.User{
 		Id:   &resp.User.Id,
 		Name: &resp.User.Name,
