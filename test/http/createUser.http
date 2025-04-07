@@ -1,0 +1,6 @@
+POST localhost:8080/user/create
+Content-Type: Application/json
+
+{
+  "name": "John Doe"
+}

@@ -10,7 +10,7 @@ import (
 )
 
 type Handler struct {
-	AuthClient proto.AuthServiceClient
+	AuthClient proto.UserServiceClient
 }
 
 func (h *Handler) CreateUser(ctx echo.Context) error {
@@ -37,7 +37,7 @@ func (h *Handler) CreateUser(ctx echo.Context) error {
 }
 
 func (h *Handler) GetUser(ctx echo.Context, id string) error {
-	resp, err := h.AuthClient.GetUserByID(
+	resp, err := h.AuthClient.GetUser(
 		context.Background(),
 		&proto.GetUserRequest{Id: id},
 	)
@@ -45,13 +45,13 @@ func (h *Handler) GetUser(ctx echo.Context, id string) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, "GetUserByID failed: "+err.Error())
 	}
 
-	if resp.User == nil {
+	if resp.Users == nil {
 		return echo.NewHTTPError(http.StatusNotFound, "User not found")
 	}
 
 	user := external.User{
-		Id:   &resp.User.Id,
-		Name: &resp.User.Name,
+		Id:   &resp.Users.Id,
+		Name: &resp.Users.Name,
 	}
 
 	return ctx.JSON(http.StatusOK, user)

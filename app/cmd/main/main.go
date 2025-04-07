@@ -22,7 +22,7 @@ func main() {
 
 	httpPort := 8080
 
-	grpcTarget := "localhost:50051"
+	grpcTarget := "host.docker.internal:50051"
 
 	log.Printf("[INFO] Connecting to gRPC service at %s", grpcTarget)
 
@@ -44,7 +44,7 @@ func main() {
 		log.Println("[INFO] gRPC connection closed.")
 	}(conn)
 
-	authClient := proto.NewAuthServiceClient(conn)
+	authClient := proto.NewUserServiceClient(conn)
 	log.Println("[INFO] AuthServiceClient initialized.")
 
 	h := &handler.Handler{
